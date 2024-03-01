@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EstateExplore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EstateExplore.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+<body class="mb-0">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark"
+             style="background-color: #3A3B3B ">
+            >
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <a class="navbar-brand p-3" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logoo.png" width="120px" height="75px" alt="Logo2">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index" style="font-family: Helvetica, sans-serif; color: #CD670D; font-size: 30px; font-weight: bold;">ESTATE EXPLORE</a>
+
+                </a>
+                <!-- Toggle button -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarRightAlignExample"
+                        aria-controls="navbarNavAltMarkup"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarRightAlignExample">
+                    <!-- Left links -->
+                    <ul class="navbar-nav ms-auto mb-3 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+						</li>
+						@* <li class="nav-item">
+							<a class="nav-link" href="#">Cart</a>
+						</li>
+                        *@
+                        <!-- Navbar dropdown -->
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    DashBoard
+                                </a>
+                                <!-- Dropdown menu -->
+                                <ul class="dropdown-menu bg-dark">
+                                    <li>
+                                        <a class="dropdown-item bg-dark text-white-50" asp-area="" asp-controller="Propertys" asp-action="Index">Property</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item bg-dark text-white-50" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Details">My Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Log out</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Create">Register</a>
+                            </li>
+                        }
+                    </ul>
+                    <!-- Left links -->
+                </div>
+                <!-- Collapsible wrapper -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <style>
+        body, h1, h2, h3, h4, h5, h6, p, a {
+            font-family: Verdana, sans-serif;
+            font-size: 16px; /* Adjust the font size to your preference */
+        }
+    </style>
+
+
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-white"
+            style="background-color:#3A3B3B ">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-3 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+            <!-- Right -->
+            <div>
+                <a href="https://www.facebook.com/" class="me-4 link-secondary">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/" class="me-4 link-secondary">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://google.com/" class="me-4 link-secondary">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="https://instagram.com/" class="me-4 link-secondary">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com/" class="me-4 link-secondary">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5 mb-0">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3 text-secondary"></i>BUILD Inc.
+                        </h6>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis molestias.
+                            Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam voluptatem veniam, 
+                            est atque cumque eum delectus sint!
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Property
+                        </h6>
+                        <p>
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="text-reset">Tools</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Useful links
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Contact Us</a>
+                        </p>
+                       
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p><i class="fas fa-home me-3 text-secondary"></i> Galkissa, Colombo 05, Sri Lanka.</p>
+                        <p>
+                            <i class="fas fa-envelope me-3 text-secondary"></i>
+                            EstateExplore@gmail.com
+                        </p>
+                        <p><i class="fas fa-phone me-3 text-secondary"></i> + 94 666 567 01</p>
+                        <p><i class="fas fa-print me-3 text-secondary"></i> + 94 666 567 02</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+        <!-- Copyright -->
+        <div class="text-center p-2" style="background-color: #AFB6B7(0, 0, 0, 0.025);">
+            © 2023 Copyright:
+            <a class="text-reset fw-bold" a asp-area="" asp-controller="Home" asp-action="Index">EstateExplore.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

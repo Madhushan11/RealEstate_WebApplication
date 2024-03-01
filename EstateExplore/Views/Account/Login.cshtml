@@ -1,0 +1,28 @@
+﻿@model EstateExplore.Models.Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div>
+    <form asp-action="Login">
+        @Html.HiddenFor(x => x.ReturnUrl)
+
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <span class="text-danger">
+                @ViewBag.Message
+            </span>
+        }
+
+        <div class="col-md-6 container">
+            <h1>Login</h1>
+            <input class="form-control" type="text" name="username" placeholder="Username">
+            <br />
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            <br />
+            <button class="btn btn-success">Sign in</button>
+        </div>
+    
+    </form>
+</div>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<EstateExplore.Models.Property>
+
+@{
+    ViewData["Title"] = "Properties";
+}
+
+<h1>Properties</h1>
+
+<form class="justify-content-center" asp-controller="Propertys" asp-action="Index" method="get">
+    <div class="input-group rounded mb-3 w-50">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="SearchString" />
+        <span class="input-group-text border-0" id="search-addon">
+            <button type="submit" class="btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </span>
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create">Create New Property</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PopertyLocation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="../images/@item.ImageUrl" style="width:75px; height:75px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PopertyLocation)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a asp-action="Edit" asp-route-id="@item.PropertyID" class="btn btn-sm btn-info">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.PropertyID" class="btn btn-sm btn-primary ml-2">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.PropertyID" class="btn btn-sm btn-danger ml-2">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <form asp-action="RecordVisit" method="post">
+                        <input type="hidden" name="propertyId" value="@item.PropertyID" />
+                        <button type="submit" class="btn btn-sm btn-success">Visit</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
